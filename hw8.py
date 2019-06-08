@@ -16,8 +16,9 @@ from scipy.misc import imread # using scipy's imread
 import matplotlib.pyplot as plt
 import numpy as np
 from skimage.transform import resize
-from sklearn import svm
+from sklearn import svm,metrics
 import pickle
+
 
 
 #pass the boundaries into SVM estimator(uses boundaries to generate hyperplane, a line of best fit)
@@ -101,6 +102,9 @@ if __name__ == "__main__":
     clf2 = pickle.loads(s)
     predicted=clf2.predict(test_data)
     print "Predicted: ", predicted
+    accuracy= metrics.accuracy_score(predicted,test_target)
+    print "Truth:  ",test_target
+    print "Accuracy: ",accuracy*100,"%"
 
 
 '''
